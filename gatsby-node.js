@@ -1,10 +1,10 @@
-const { fetchFromGithub } = require("./src/helper");
+const { fetchFromGitlabWiki } = require("./src/helper");
 const crypto = require("crypto");
 const uuid = require("uuid/v1");
 
 exports.sourceNodes = (
   { boundActionCreators },
-  { token, variables, graphQLQuery, url }
+  { token, id }
 ) => {
   const { createNode } = boundActionCreators;
   return new Promise((resolve, reject) => {
@@ -13,14 +13,18 @@ exports.sourceNodes = (
       reject("token is undefined");
       return;
     }
-    fetchFromGithub(url, token, graphQLQuery, variables).then(result => {
+    if (id === undefined) {
+      reject("id is undefined");
+      return;
+    }    
+    fetchFromGitlabWiki(id, token).then(result => {
       createNode({
         data: result.data,
         id: result.id || uuid(),
         parent: null,
         children: [],
         internal: {
-          type: "GithubData",
+          type: "GitlabWikiData",
           contentDigest: crypto
             .createHash(`md5`)
             .update(JSON.stringify(result))

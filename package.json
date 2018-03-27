@@ -1,29 +1,24 @@
 {
-  "name": "gatsby-source-github-api",
+  "name": "gitlab-wiki-api-source",
   "version": "0.0.3",
-  "description": "gatsby plugin for github v4 API",
+  "description": "gatsby plugin for gitlab wikis",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ldd/gatsby-source-github.git"
+    "url": "https://github.com/Ziinc/gitlab-wiki-api-source.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "gatsby",
-    "github"
+    "gitlab"
   ],
-  "author": "ldd <leonardoldd@gmail.com>",
+  "author": "ldd <leonardoldd@gmail.com>, ziinc <tzeyiing@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "graphql-fetch": "^1.0.1",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "eslint": "^4.6.1",
-    "eslint-config-prettier": "^2.4.0",
-    "eslint-plugin-prettier": "^2.2.0",
-    "prettier": "^1.6.1"
   }
 }
