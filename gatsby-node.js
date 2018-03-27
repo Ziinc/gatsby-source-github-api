@@ -1,6 +1,6 @@
 const { fetchFromGitlabWiki } = require("./src/helper");
 const crypto = require("crypto");
-const uuid = require("uuid/v1");
+const uuid = require("uuid/v4");
 
 exports.sourceNodes = (
 	{ boundActionCreators },
@@ -29,16 +29,12 @@ exports.sourceNodes = (
 				const { format, slug, content } = datum
 				if (format == 'markdown' ){
 					
-
 					createNode({
-						gitlabSlug: slug,
-						data: content,
-	
-	
 						id: uuid(),
 						parent: null,
 						children: [],
 						internal: {
+							content,
 							type: "GitlabWikiData",
 							contentDigest: crypto
 								.createHash(`md5`)
@@ -48,13 +44,10 @@ exports.sourceNodes = (
 						}
 					});
 				}
-				
-
-
-
-
 			})
+		}).then(res=>{
+			resolve();
 		});
-		resolve();
+		
 	});
 }
