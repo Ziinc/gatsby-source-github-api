@@ -1,11 +1,11 @@
 {
-  "name": "gitlab-wiki-api-source",
+  "name": "gatsby-source-gitlab-wiki-api",
   "version": "0.0.3",
   "description": "gatsby plugin for gitlab wikis",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ziinc/gitlab-wiki-api-source.git"
+    "url": "https://github.com/Ziinc/gatsby-source-gitlab-wiki-api.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
