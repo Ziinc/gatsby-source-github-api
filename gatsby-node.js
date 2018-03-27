@@ -42,7 +42,7 @@ exports.sourceNodes = (
 							type: "GitlabWikiData",
 							contentDigest: crypto
 								.createHash(`md5`)
-								.update(JSON.stringify(result))
+								.update(JSON.stringify(datum))
 								.digest(`hex`),
 							mediaType: "text/markdown"
 						}
