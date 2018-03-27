@@ -20,24 +20,17 @@ const fetchFromAPI = (
   token,
 ) => {
   const url =  `https://gitlab.example.com/api/v4/projects/${id}/wikis?with_content=1`;
+  return fetchJSON(url, token);
+};
+
+async function fetchJSON(url, token) {
   const headers = new Headers();
   headers.set("PRIVATE-TOKEN", token);
-
   return await fetch(url,{
     headers,  
     method: "GET",
     mode: "cors"
-  })
-};
-
-// async function fetchJSON(fetch, token, query, variables) {
-//   const headers = new Headers();
-//   headers.set("PRIVATE-TOKEN", token);
-//   return await fetch(query, variables, {
-//     headers,  
-//     method: "GET",
-//     mode: "cors"
-//   });
-// }
+  });
+}
 
 exports.fetchFromGitlabWiki = fetchFromAPI;
