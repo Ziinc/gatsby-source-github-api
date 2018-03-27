@@ -15,13 +15,17 @@
 // }
 // `;
 // const DEFAULT_VARIABLES = { q: "", nFirst: 1 };
-const fetchFromAPI = (
-  id,
-  token,
-) => {
+// const fetchFromAPI = (
+//   id,
+//   token,
+// ) => {
+
+// };
+
+function fetchFromAPI (id,token){
   const url =  `https://gitlab.example.com/api/v4/projects/${id}/wikis?with_content=1`;
   return fetchJSON(url, token);
-};
+}
 
 async function fetchJSON(url, token) {
   const headers = new Headers();
