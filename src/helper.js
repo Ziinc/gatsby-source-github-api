@@ -19,7 +19,7 @@ const fetchFromAPI = (
   id,
   token,
 ) => {
-  const url =  `https://gitlab.example.com/api/v4/projects/${id}/wikis?with_content=1`
+  const url =  `https://gitlab.example.com/api/v4/projects/${id}/wikis?with_content=1`;
   const headers = new Headers();
   headers.set("PRIVATE-TOKEN", token);
 
