@@ -30,22 +30,20 @@ exports.sourceNodes = (
 			data.forEach(datum => {
 				//handle each data point
 				const { format, slug, content } = datum
-				const toExclude = ()=>{
-					// exclude exact match
-					if (slugsToExclude.includes(slug)){
-						return true
+				let found;
+				slugsToExclude.forEach( slugToExclude =>{
+					const exp = new RegExp(`^(${slugToExclude})`);
+					// console.log('test:',slug, exp.test(slug));
+					if (exp.test(slug)){
+						// should exclude slug
+						found = true;
 					}
-					slugsToExclude.forEach( slugToExclude =>{
-						const exp = new RegExp(`^(${slugToExclude})`);
-						if (exp.test(slug) == true){
-							// should exclude slug
-							return true
-						}
-					});
-				};
-				if (format == 'markdown' && toExclude() != true ){
+				});
+				console.log(slug, found);
+				if (format == 'markdown' && found != true ){
 					
 					createNode({
+						slug: `/${slug}`,
 						id: uuid(),
 						parent: null,
 						children: [],
