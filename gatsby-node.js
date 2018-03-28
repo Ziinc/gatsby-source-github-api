@@ -4,7 +4,7 @@ const uuid = require("uuid/v4");
 
 exports.sourceNodes = (
 	{ boundActionCreators },
-	{ token, id }
+	{ token, id, slugsToExclude }
 ) => {
 	const { createNode } = boundActionCreators;
 	return new Promise((resolve, reject) => {
@@ -17,6 +17,9 @@ exports.sourceNodes = (
 			reject("id is undefined");
 			return;
 		}
+		if (Boolean(slugsToExclude) == false){
+			slugsToExclude = [];
+		}
 		fetchFromGitlabWiki(id, token).then(response => {
 			if (response.ok) {
 				return response.json()
@@ -27,7 +30,20 @@ exports.sourceNodes = (
 			data.forEach(datum => {
 				//handle each data point
 				const { format, slug, content } = datum
-				if (format == 'markdown' ){
+				const toExclude = ()=>{
+					// exclude exact match
+					if (slugsToExclude.includes(slug)){
+						return true
+					}
+					slugsToExclude.forEach( slugToExclude =>{
+						const exp = new RegExp(`^(${slugToExclude})`);
+						if (exp.test(slug) == true){
+							// should exclude slug
+							return true
+						}
+					});
+				};
+				if (format == 'markdown' && toExclude() != true ){
 					
 					createNode({
 						id: uuid(),
