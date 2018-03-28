@@ -1,6 +1,5 @@
 # gatsby-source-github-api
-Source plugin for pulling data into Gatsby from the official GitHub v4 [GraphQL API](https://developer.github.com/v4/).
-
+Source plugin for pulling data into Gatsby from the official gitlab wiki api
 ## Install
 todo
 
@@ -12,7 +11,7 @@ In there, you want to add this plugin and at least add the token in the options 
 // In your gatsby-config.js
 plugins: [
   {
-    resolve: `gatsby-source-github-api`,
+    resolve: `gatsby-source-gitlab-wiki-api`,
     options: {
       // token: required by the Gitlab API
       token: someString,
